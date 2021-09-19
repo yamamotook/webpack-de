@@ -11,4 +11,4 @@ const imgDom = document.createElement("img");
 imgDom.src = img;
 document.body.appendChild(imgDom);
 
-export default "cnm";
+export default "hhh";

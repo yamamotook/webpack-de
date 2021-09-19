@@ -1,15 +1,18 @@
 const { resolve } = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: "development",
   devtool: "source-map",
   entry: {
     myChunk: "./src/index.js",
+    a: "./src/a.js",
   },
   output: {
     path: resolve(__dirname, "./target"), //绝对路劲,
-    // filename: "[name]-[hash:5].js",
-    filename: "bundle.js",
+    filename: "script/[name]-[chunkhash:5].js",
     //在打包结果中暴露一个全局变量myApp
     library: "myApp",
     //全局变量暴露到那里? 默认是var ,可以是window ,也可以是global(for nodejs环境)
@@ -20,29 +23,22 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: [
-          {
-            loader: "./loaders/loader1.js",
-            options: {
-              test: true,
-            },
-          },
-          {
-            loader: "./loaders/loader2.js",
-            options: {
-              test: true,
-            },
-          },
-        ],
-      },
-      {
         test: /\.css$/,
         use: ["./loaders/my-style-loader"],
       },
       {
-        test: /\.(png)|(jpg)$/,
-        use: ["./loaders/img-loader.js"],
+        test: /\.(png)|(jpg)|(gif)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              // 如果超过10k ，交给file-loader处理,同时会将所有的query parameter 传递给file-loader
+              limit: 1 * 1000,
+              //如果超过了limit，file-loader生成文件名的规则
+              name: "img/[name]-[hash].[ext]",
+            },
+          },
+        ],
       },
     ],
   },
@@ -57,4 +53,31 @@ module.exports = {
   externals: {
     jquery: "$",
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+
+    new HtmlWebpackPlugin({
+      //生成的html使用的模板
+      template: "./public/index.html",
+      //生成的文件名
+      filename: "index.html",
+      //那些chunk会被引用
+      chunks: ["myChunk"],
+      inject: "head",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      filename: "a.html",
+      chunks: ["a"],
+      inject: "body",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "./public/static",
+          to: "./static",
+        },
+      ],
+    }),
+  ],
 };
