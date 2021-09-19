@@ -187,6 +187,7 @@ plugin在webpack中的配置
 * output 输出相关
     * libray 打包结果的入口文件会暴露一个变量,指定变量名.[文档](https://www.webpackjs.com/configuration/output/#output-library)
     * librayTarget 暴露的方式
+    * publiPath 一个字符串。一些loader 和 plugin 在处理资源时会拼接这个字符串。比如一个静态图在某些html文件中使用，如果不规定publiPath，那么这些静态资源可能将以相对位置加载，照成404.默认情况下一般配置为`/`,根据项目部署的路劲不同来定。
 * target 打包的输出结果
 * resolve  解析相关
     * modules 当解析到不指定路劲的引用时,去哪里找依赖

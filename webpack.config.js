@@ -14,6 +14,7 @@ module.exports = {
     library: "myApp",
     //全局变量暴露到那里? 默认是var ,可以是window ,也可以是global(for nodejs环境)
     libraryTarget: "var",
+    publicPath: "/",
   },
   // 最终打包的结果运行的环境(默认是web)
   target: "web",
