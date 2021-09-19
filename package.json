@@ -1,0 +1,12 @@
+{
+  "name": "webpack-de",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "yamamoto <qq931266421@outlook.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "loader-utils": "^2.0.0",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  }
+}
