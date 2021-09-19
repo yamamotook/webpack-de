@@ -1,0 +1,18 @@
+.red-block{
+    color: red;
+    width: 300px;
+    height: 300px;
+    border: 1px solid;
+    background-image: url("./../img/cssWorld.png");
+}
+
+.blue-block{
+    color: blue;
+    width: 300px;
+    height: 300px;
+    border: 1px solid;
+    background-image: url('./static/news.jpg');
+}
+
+
+

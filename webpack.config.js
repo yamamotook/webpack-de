@@ -1,0 +1,70 @@
+const { resolve } = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+
+module.exports = {
+  mode: "development",
+  devtool: "source-map",
+  output: {
+    path: resolve(__dirname, "dist"),
+    publicPath: "/dist/",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              esModule: false,
+              url: {
+                filter: (url, resourcePath) => {
+                  //如果是包含了static的路劲，那么不处理;交给copy-plugin处理
+                  if (/static/.test(url)) {
+                    return false;
+                  }
+                  return true;
+                },
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        loader: "url-loader",
+        options: {
+          limit: 1000 * 1000,
+          // esModule: false,
+        },
+        // 在webpack5中 引入了资源模块来替代webpack4的 url-loader， file-loader等.
+        //不使用资源模块，还是使用原来的loader
+        // 如果不禁用，会导致重复生成资源导致冲突
+        type: "javascript/auto",
+      },
+    ],
+  },
+  plugins: [
+    new CleanWebpackPlugin({}),
+    new HtmlPlugin({
+      template: "./public/index.html",
+      inject: "body",
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "./public/static",
+          to: "./static",
+        },
+      ],
+    }),
+  ],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src/"),
+    },
+  },
+};
