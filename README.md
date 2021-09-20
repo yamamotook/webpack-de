@@ -74,6 +74,30 @@ url通常为图片或者字体，在webpack 5以下(webpack4)中， 通常需要
 }
 ```
 
+
+## CSS-Module
+使用css-loader 可以轻松启用CSS Module.默认情况下, css-loader会自动匹配`xxx.module.css`这样的文件名,并启用CSS-Module.
+也可以使用配置Module: true来启用全局的CSS Module.
+css-loader 会根据文件路劲和类名生成一个hash值.并且会返回一个对象
+这个对象映射转换前和转换后的类名.
+
+关于local class的命名规则,推荐使用小驼峰,但不是必须的.
+
+如果在css module中 有一些样式是公共的,不希望被转换, 可以加上语法:
+`:global`.这样css-loader 会将这些样式原样输出.
+
+
+```css
+/* 原样输出 */
+:global(.red){
+    color : red;
+}
+/* 或者 */
+:global .red{
+    color : red;
+}
+```
+
 # style-loader
 
 因为css-loader只会将css文件转换为一个包含了这个css文件的js文件.
