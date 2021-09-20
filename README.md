@@ -98,6 +98,35 @@ css-loader 会根据文件路劲和类名生成一个hash值.并且会返回一�
 }
 ```
 
+
+## 使用scss
+* 安装:
+    在webpack中使用scss, 需要安装`sass编译器`和`sass-loader`.
+    * sass编译器在node环境下有`node-sass`和`dart-sass`.推荐使用`dart-sass`,`node-sass`安装有很多坑, 经常会安装失败.不仅如此Apple Silicon 并不兼容node-sass.
+  
+```
+    yarn add --dev sass sass-loader
+```
+
+* 使用:
+    scss-loader是处理scss文件的第一步, scss-loader可以将scss代码编译成为css代码,后续处理就可以交给css-loader来处理了.
+```js
+    {
+        test : /\.s[ac]ss$/,
+        use : ['style-loader', 'css-loader', 'scss-loader']
+    }
+```
+
+## 使用postcss
+postcss 是一个css代码转换的工具.可以简单的理解为:CSS版本的Babel.
+postcss 的工作方式和webpack类似.他本身只会将css代码分析成AST, 很多强大的功能是依赖于`plugin`.比如自动加入厂商前缀, 使用未来的css语法...等等都是需要插件来支持的.
+使用postcss 你需要编写一个配置文件:`postcss.config.js`.
+postcss 本身和scss/less 这一些预处理语言并不冲突.
+
+* 在webpack中使用postcss
+    安装`postcss` 和 `postcss-loader`.
+    处理的顺序(如果安装了scss) scss-loader => postcss-loader => css-loader => style-loader
+
 # style-loader
 
 因为css-loader只会将css文件转换为一个包含了这个css文件的js文件.

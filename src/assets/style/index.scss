@@ -1,0 +1,27 @@
+$color: red;
+
+.color-red {
+  color: $color;
+}
+
+.flex-box {
+  display: flex;
+}
+
+.block {
+  width: 100px;
+  height: 100px;
+}
+.blue-box {
+  background-color: blue;
+}
+.red-box {
+  background-color: red;
+}
+.yellow-box {
+  background-color: yellow;
+}
+
+.bb {
+  transform: translate(10px);
+}

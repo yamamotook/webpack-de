@@ -1,27 +1,38 @@
-  /* 一些global css属性,会原样输出 */
+/* 一些global css属性,会原样输出 */
 :global(.green) {
-    color : green;
+  color: green;
 }
 
 :global .pink {
-    color: pink;
+  color: pink;
 }
 
-
-
-.container{
-    width: 200px;
-    height: 200px;
-    color: #fff;
-    display: flex;
+.container {
+  width: 200px;
+  height: 200px;
+  color: #fff;
+  display: flex;
 }
 
-.left{
-    flex: 1 0 0;
-    background-color: green;
-    composes : redClass from './style2.module.css'
+.left {
+  flex: 1 0 0;
+  background-color: green;
+  composes: redClass from "./style2.module.css";
 }
-.right{
-    flex: 1 0 0;
-    background-color: greenyellow;
+.right {
+  flex: 1 0 0;
+  background-color: greenyellow;
+}
+.modal {
+  position: fixed;
+  inset: 0;
+}
+
+.trans {
+  transform: rotate(-45deg);
+}
+
+.grid {
+  display: grid;
+  grid-template-column: 100px 100px;
 }

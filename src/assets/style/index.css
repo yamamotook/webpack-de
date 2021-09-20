@@ -1,18 +1,45 @@
-.red-block{
-    color: red;
-    width: 300px;
-    height: 300px;
-    border: 1px solid;
-    background-image: url("./../img/cssWorld.png");
+.red-block {
+  color: red;
+  width: 300px;
+  height: 300px;
+  border: 1px solid;
+  background-image: url("./../img/cssWorld.png");
+}
+.blue-block {
+  color: blue;
+  width: 300px;
+  height: 300px;
+  border: 1px solid;
+  background-image: url("./static/news.jpg");
 }
 
-.blue-block{
-    color: blue;
-    width: 300px;
-    height: 300px;
-    border: 1px solid;
-    background-image: url('./static/news.jpg');
+.grid {
+grid-kiss:
+	"╔═10═╗                  ╔═10═╗    "
+	"║ .a ║                  ║ .b ║ 3fr"
+	"╚════╝                  ╚════╝    "
+	"      ╔═20═╗      ╔═20═╗          "
+	"      ║ .c ║      ║ .d ║       5fr"
+	"      ╚════╝      ╚════╝          "
+	"            ╔═30═╗                "
+	"            ║ .e ║             7fr"
+	"            ╚════╝                ";
+
 }
 
-
+.grid{
+	&>div{
+background: #eee;
+   border: 1px solid #999;
+   padding: 1em;
+}
+}
+ 
+a {
+  color: rgb(0 0 100% / 90%);
+ 
+  &:hover {
+    color: rebeccapurple;
+  }
+}
 

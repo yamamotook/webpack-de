@@ -13,7 +13,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(css)|(postcss)|(pcss)$/,
         use: [
           "style-loader",
           {
@@ -31,7 +31,12 @@ module.exports = {
               },
             },
           },
+          "postcss-loader",
         ],
+      },
+      {
+        test: /\.s[ac]ss$/,
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
