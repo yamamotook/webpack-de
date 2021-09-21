@@ -2,12 +2,17 @@ const { resolve } = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: "development",
   devtool: "source-map",
+  entry: {
+    main: "./src/index.js",
+    a: "./src/a.js",
+  },
   output: {
     path: resolve(__dirname, "dist"),
+    filename: "js/[name]-[chunkhash:5].js",
     publicPath: "/dist/",
   },
   module: {
@@ -15,7 +20,8 @@ module.exports = {
       {
         test: /\.(css)|(postcss)|(pcss)$/,
         use: [
-          "style-loader",
+          // "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -57,6 +63,13 @@ module.exports = {
     new HtmlPlugin({
       template: "./public/index.html",
       inject: "body",
+      chunks: ["main"],
+    }),
+    new HtmlPlugin({
+      template: "./public/a.html",
+      filename: "a.html",
+      inject: "body",
+      chunks: ["a"],
     }),
     new CopyPlugin({
       patterns: [
@@ -65,6 +78,9 @@ module.exports = {
           to: "./static",
         },
       ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
     }),
   ],
   resolve: {

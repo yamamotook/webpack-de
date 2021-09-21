@@ -133,3 +133,14 @@ postcss 本身和scss/less 这一些预处理语言并不冲突.
 其实就是将css文件转换为了js中的字符串.
 
 style-loader将css-loader的结果转换为styleDOM标签,插入到head中.
+
+# mini-css-extract-plugin
+
+style-loader 只会将css代码通过style标签插入到head中.
+有的时候我们希望引入的css能够生成css文件,就可以使用`mini-css-extract-plugin`;
+`mini-css-extract-plugin`提供了一个loader和一个plugin需要同时使用, 因为loader并不具备生成文件的能力,但是loader需要知道要生成的css内容
+所以css-loader处理之后需要交给`mini-css-extract-plugin`的loader处理.
+
+* mini-css-extract-plugin的loader可以通过引入的类的静态方法获取的到:```MiniCssExtractPlugin.loader```
+* `mini-css-extract-plugin`生成文件的方式和webpack打包相似, 一个chunk会对应生成一个css文件.
+* `mini-css-extract-plugin`并不会将打包出来的文件自动引入html模板中, 需要通过`html-webpack-plugin`来引入.

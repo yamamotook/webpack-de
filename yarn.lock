@@ -1207,6 +1207,13 @@ mimic-fn@^2.1.0:
   resolved "https://registry.npm.taobao.org/mimic-fn/download/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha1-ftLCzMyvhNP/y3pptXcR/CCDQBs=
 
+mini-css-extract-plugin@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.nlark.com/mini-css-extract-plugin/download/mini-css-extract-plugin-2.3.0.tgz?cache=0&sync_timestamp=1631375725696&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmini-css-extract-plugin%2Fdownload%2Fmini-css-extract-plugin-2.3.0.tgz#87515f185533752944d753ac7216fc876779dafe"
+  integrity sha1-h1FfGFUzdSlE11Oschb8h2d52v4=
+  dependencies:
+    schema-utils "^3.1.0"
+
 minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npm.taobao.org/minimatch/download/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
