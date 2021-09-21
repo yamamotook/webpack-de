@@ -4,9 +4,23 @@
   "main": "index.js",
   "author": "yamamoto <qq931266421@outlook.com>",
   "license": "MIT",
+  "scripts": {
+    "devB": "cross-env NODE_ENV=development babel  src --out-dir dist -w",
+    "dev": "cross-env NODE_ENV=development webpack -w"
+  },
   "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-proposal-do-expressions": "^7.14.5",
+    "@babel/preset-env": "^7.15.6",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "html-webpack-plugin": "^5.3.2",
     "loader-utils": "^2.0.0",
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "core-js": "^3.18.0"
   }
 }
