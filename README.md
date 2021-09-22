@@ -13,6 +13,7 @@ module.exports = {
 }
 ```
 
+
 ## presets
 presets:预设.`babel`所有的js代码转换能力全部来自plugin的处理.而每个plugin都只是处理js代码中的很小一个部分.例如:`将箭头函数转换为普通函数`的功能就是依靠插件`@babel/plugin-transform-arrow-functions`来转换的.
 所以我们可以平时常用的插件项都集中到一个预设中,这样就不用去繁琐的去添加插件和插件的配置了.
